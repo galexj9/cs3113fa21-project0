@@ -19,6 +19,4 @@ clean:
   rm -f $(OBJ) $(TARGET).o $(TARGET)
     
     
-#move this to collaborators file
-# https://courses.cs.washington.edu/courses/cse451/99wi/Section/makeintro.html
-# https://www.gnu.org/software/make/manual/make.html
+
