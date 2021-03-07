@@ -1,6 +1,6 @@
 #Variables
 TARGET = project0
-SRC = source.c
+SRC = source.c list.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -g
 CC = gcc
@@ -17,5 +17,4 @@ $(TARGET): $(OBJ)
 
 #removes all object files and the exe
 clean:
-	rm -f $(OBJ) $(TARGET).o $(TARGET) 
-
+	rm -f $(OBJ) $(TARGET).o $(TARGET)
