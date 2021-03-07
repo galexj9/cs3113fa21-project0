@@ -10,4 +10,11 @@ extern Node* sort(Node* head, void* data);
 
 extern void print(Node* head);
 
+struct Node {
+public:
+  int count;
+  void* data;
+  Node *next;
+};
+
 #endif

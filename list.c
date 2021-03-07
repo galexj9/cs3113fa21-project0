@@ -2,13 +2,6 @@
 #include "list.h"
 
 /* my linked list implementation */
-struct Node {
-public:
-  int count;
-  void* data;
-  struct Node *next;
-};
-
 
 void push(Node* head, void* data) {
 }
