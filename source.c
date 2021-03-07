@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "list.h"
 
 //read stdin to get the binary of a valid UTF-8 file
