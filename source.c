@@ -20,9 +20,9 @@ int main() {
       c = getchar();
     }
     //if the first bit is 0 then c is the final or only char in the unicode
-    push(character, c);
+    push(character, &c);
     //add the completed character to the unicode list
-      if (get(list, &character) == null)
+      if (get(list, &character) == NULL)
         push(list, &character);
       //increment the count
       get(list, &character)->count += 1;
