@@ -2,12 +2,11 @@
 #ifndef LIST_H_
 #define LIST_H_
 
-struct Node {
-public:
+typedef struct Node {
   int count;
   void* data;
-  Node *next;
-};
+  struct Node* next;
+} Node;
 
 extern void push(Node* head, void* data);
 

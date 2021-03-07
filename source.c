@@ -5,7 +5,7 @@
 //read stdin to get the binary of a valid UTF-8 file
 //count occurence of each character (even invisible ones)
 //write a list to stdout with each char in descending order of count
-main() {
+int main() {
   //my list of all unicode characters (stored as lists) and their count
   Node* list = malloc(sizeof(*Node));
 
@@ -33,4 +33,5 @@ main() {
 
   //print out the sorted list (to stdout)
   print(list);
+  return 0;
 }
