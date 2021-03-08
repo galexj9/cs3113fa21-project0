@@ -21,6 +21,18 @@ Node* push(Node* head, Node* newNode) {
   return head;
 }
 
+//swaps the data of two nodes
+void swap(Node* a, Node* b){
+  Node* temp = (Node *) malloc(sizeof(Node));
+  temp->count = a->count;
+  temp->data = a->data;
+  a->count = b->count;
+  a->data = b->data;
+  b->count = temp->count;
+  b->data = temp->data;
+  free(temp);
+}
+
 //returns a new list sorted in descending order by count using max sort
 void sort(Node* list) {
   Node* start = list;
@@ -35,21 +47,9 @@ void sort(Node* list) {
         max = travel;
       travel = travel->next;
     }
-    swap(list, max); //move the max el to the top of the list
+    swap(start, max); //move the max el to the top of the list
     start = start->next; //move on down
   }
-}
-
-//swaps the data of two nodes
-void swap(Node* a, Node* b){
-  Node* temp = (Node *) malloc(sizeof(Node));
-  temp->count = a->count;
-  temp->data = a->data;
-  a->count = b->count;
-  a->data = b->data;
-  b->count = temp->count;
-  b->data = temp->data;
-  free(temp);
 }
 
 //return the Node pointer with given data
