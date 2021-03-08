@@ -15,7 +15,7 @@ int main() {
   //my list of all unicode characters and their count
   Node* list = (Node *) malloc(sizeof(Node));
   wint_t c;
-
+  
   //loop thru stdin for unicode chars
   while((c = fgetwc(stdin)) != WEOF) {
     Node* node = (Node *) malloc(sizeof(Node));
@@ -24,12 +24,12 @@ int main() {
       if (get(list, c) == NULL)
         list = push(list, node);
       //increment the count
-      //get(list, c)->count += 1;
-      printf("hello from here");
+      get(list, c)->count += 1;
+      //printf("hello from here");
   }
 
   //sort the completed list in descending order of occurrence
-  list = sort(list);
+  //list = sort(list);
 
   //print out the sorted list (to stdout)
   print(list);
