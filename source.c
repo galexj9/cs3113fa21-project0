@@ -13,10 +13,10 @@ int main() {
   wchar_t c;
   while((c = fgetc(stdin)) != EOF) {
     //add the completed character to the unicode list
-      if (get(list, &character) == NULL)
-        push(list, &character);
+      if (get(list, c) == NULL)
+        push(list, c);
       //increment the count
-      get(list, &character)->count += 1;
+      get(list, c)->count += 1;
   }
 
   //sort the completed list in descending order of occurrence

@@ -35,7 +35,8 @@ Node* sort(Node* head) {
 void print(Node* head) {
   Node* travel = head;
   while(travel != NULL) {
-    printf("%c->%d", travel->data, travel->count);
+    putchar(travel->data);
+    printf(" -> %d \n", travel->count);
     travel = travel->next;
   }
 }
