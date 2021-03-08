@@ -3,7 +3,7 @@
 #include "list.h"
 
 //add a new node with data to the end of a list
-void push(Node* head, wchar_t data) {
+Node* push(Node* head, wchar_t data) {
   Node* newNode = (Node *) malloc(sizeof(Node));
   newNode->data = data;
 
@@ -39,10 +39,11 @@ Node* sort(Node* head) {
 
 //prints out a list with its data
 void print(Node* head) {
+  printf("printing: \n");
   Node* travel = head;
   while(travel != NULL) {
-    fputc(travel->data);
-    fprintf("->%d \n", travel->count);
+    printf("%c->%d", (int) travel->data, (int) travel->count);
+    //fprintf(stdin, "->%d \n", (int) travel->count);
     travel = travel->next;
   }
 }
