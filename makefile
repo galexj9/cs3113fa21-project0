@@ -9,11 +9,11 @@ CC = gcc
 all: $(TARGET)
 
 #Compiles TARGET using all the OBJ files
-$(TARGET): $(OBJ) $(HEAD)
-	$(CC) $(CFLAGS) -c $^ -o $@
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
 
 #pattern rule to make all obj files. $< translates to source file. $@ is the target
-%.o: %.c
+%.o: %.c $(HEAD)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #removes all object files and the exe

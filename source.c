@@ -8,10 +8,9 @@
 int main() {
   //my list of all unicode characters (stored as lists) and their count
   Node* list = (Node *) malloc(sizeof(Node));
-  char* c;
-  while((c = fgetc()) != EOF) {
+  wchar_t c;
+  while((c = fgetc(stdin)) != EOF) {
     putchar(c);
-    printf(" %c", c);
   }
 
 
@@ -49,6 +48,6 @@ int main() {
 
   //print out the sorted list (to stdout)
   */
-  print(list);
+  //print(list);
   return 0;
 }

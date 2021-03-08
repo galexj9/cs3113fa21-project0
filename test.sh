@@ -4,4 +4,4 @@ exe=decode
 make clean
 make all
 
-cat test1 | project0
+cat test1 | ./project0
