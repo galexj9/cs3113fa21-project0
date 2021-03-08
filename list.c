@@ -21,47 +21,35 @@ Node* push(Node* head, Node* newNode) {
   return head;
 }
 
-//removes a given node from a list
-Node* pop(Node* head, Node* del) {
-  if(head->data == del->data)
-    return head->next;
-
-  //find the node previous the one to remove
-  Node* travel = head;
-  while(travel->next->data != del->data)
-    travel = travel->next;
-  //remove the Node
-  travel->next = travel->next->next;
-
-  return head;
-}
-
 //returns a new list sorted in descending order by count using max sort
-Node* sort(Node* list) {
-  Node* sorted = NULL;
-  Node* max;
+void sort(Node* list) {
+  Node* start = list;
   Node* travel;
+  Node* max;
 
-  //loop thru the unsorted list until it is empty
-  //removing the largest element with each scan
-  while(list != NULL) {
-    travel = list;
-    max = list;
-
-    //find the largest unsorted element
+  while(start->next != NULL) {
+    max = start;
+    travel = start->next;
     while(travel != NULL) {
       if(travel->count > max->count)
         max = travel;
       travel = travel->next;
     }
-
-    //remove the largest element from the unsorted list
-    list = pop(list, max);
-    //add it to the end of the sorted list
-    sorted = push(sorted, max);
+    swap(list, max); //move the max el to the top of the list
+    start = start->next; //move on down
   }
+}
 
-  return sorted;
+//swaps the data of two nodes
+void swap(Node* a, Node* b){
+  Node* temp = (Node *) malloc(sizeof(Node));
+  temp->count = a->count;
+  temp->data = a->data;
+  a->count = b->count;
+  a->data = b->data;
+  b->count = temp->count;
+  b->data = temp->data;
+  free(temp);
 }
 
 //return the Node pointer with given data

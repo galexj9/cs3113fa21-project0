@@ -28,7 +28,7 @@ int main() {
   }
 
   //sort the completed list in descending order of occurrence
-  //list = sort(list);
+  sort(list);
 
   //print out the sorted list (to stdout)
   print(list);

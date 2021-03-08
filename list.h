@@ -9,13 +9,11 @@ typedef struct Node {
   struct Node* next;
 } Node;
 
-extern Node* pop(Node* head, Node* del);
-
 extern Node* push(Node* head, Node* newNode);
 
 extern Node* get(Node* head, wint_t data);
 
-extern Node* sort(Node* head);
+extern void sort(Node* head);
 
 extern void print(Node* head);
 
