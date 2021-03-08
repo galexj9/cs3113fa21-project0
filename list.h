@@ -1,6 +1,7 @@
 //prevents header file from being processed twice
 #ifndef LIST_H_
 #define LIST_H_
+#include <wchar.h>
 
 typedef struct Node {
   int count;
