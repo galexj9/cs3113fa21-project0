@@ -14,13 +14,22 @@ int main() {
   while((c = getchar()) != EOF) {
     //create a new list to store a single unicode character
     Node* character = (Node *) malloc(sizeof(Node));
-    //if the first bit is 1, there are more characters to follow
-    while(c & 0x80 == 1) {
-      push(character, c);
-      c = getchar();
+    int byteCount = 1; //minimum length 1
+    int cbits = c << 1; //the first '1' is counted for already
+
+    //count the length of the unicode char
+    while(cbits & 0x80 == 1) { //while the first bit is 1
+      cbits = cbits << 1;  //left shift 1
+      byteCount++;
     }
-    //if the first bit is 0 then c is the final or only char in the unicode
-    push(character, &c);
+
+    //build the character lsit
+    while(byteCount > 0) {
+      push(character, &c);
+      c = getchar();
+      byteCount--;
+    }
+
     //add the completed character to the unicode list
       if (get(list, &character) == NULL)
         push(list, &character);
@@ -28,7 +37,7 @@ int main() {
       get(list, &character)->count += 1;
   }
 
-  //sort the list in descending order of occurrence
+  //sort the completed list in descending order of occurrence
   list = sort(list);
 
   //print out the sorted list (to stdout)
