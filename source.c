@@ -8,11 +8,23 @@
 int main() {
   //my list of all unicode characters (stored as lists) and their count
   Node* list = (Node *) malloc(sizeof(Node));
+
+  //loop thru stdin for unicode chars
   wchar_t c;
   while((c = fgetc(stdin)) != EOF) {
-    putchar(c);
+    //add the completed character to the unicode list
+      if (get(list, &character) == NULL)
+        push(list, &character);
+      //increment the count
+      get(list, &character)->count += 1;
   }
 
+  //sort the completed list in descending order of occurrence
+  list = sort(list);
+
+  //print out the sorted list (to stdout)
+  print(list);
+  return 0;
 
   /*
   int c;
@@ -35,19 +47,5 @@ int main() {
       c = getchar();
       byteCount--;
     }
-
-    //add the completed character to the unicode list
-      if (get(list, &character) == NULL)
-        push(list, &character);
-      //increment the count
-      get(list, &character)->count += 1;
-  }
-
-  //sort the completed list in descending order of occurrence
-  list = sort(list);
-
-  //print out the sorted list (to stdout)
-  */
-  //print(list);
-  return 0;
+  } */
 }

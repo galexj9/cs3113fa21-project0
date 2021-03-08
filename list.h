@@ -4,13 +4,13 @@
 
 typedef struct Node {
   int count;
-  void* data;
+  wchar_t data;
   struct Node* next;
 } Node;
 
-extern void push(Node* head, void* data);
+extern void push(Node* head, wchar_t data);
 
-extern Node* get(Node* head, void* data);
+extern Node* get(Node* head, wchar_t data);
 
 extern Node* sort(Node* head);
 
