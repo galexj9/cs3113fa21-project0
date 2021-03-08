@@ -41,6 +41,7 @@ Node* sort(Node* list) {
   Node* sorted = (Node *) malloc(sizeof(Node));
   Node* max;
   Node* travel;
+  printf("hello");
   
   //loop thru the unsorted list until it is empty
   while(list != NULL) {
@@ -86,7 +87,7 @@ void print(Node* head) {
         printf("\' \'->%d\n", travel->count);
         break;
       default:
-        printf("\%lc", travel->data);
+        printf("%lc", travel->data);
         printf("->%d\n", travel->count);
     }
     travel = travel->next;
