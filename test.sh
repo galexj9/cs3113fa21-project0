@@ -1,8 +1,7 @@
 #!/bin/bash
 set echo off
-
+clear
 make clean
 make all
-clear
 
 cat test1 | ./project0

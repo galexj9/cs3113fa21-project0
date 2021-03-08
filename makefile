@@ -6,7 +6,7 @@ HEAD = list.h
 CFLAGS = -g
 CC = gcc
 
-.SILENT:
+
 all: $(TARGET)
 
 #Compiles TARGET using all the OBJ files

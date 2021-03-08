@@ -48,10 +48,11 @@ Node* pop(Node* head, wint_t data) {
 //sorts using max sort
 Node* sort(Node* list) {
   Node* sorted = (Node *) malloc(sizeof(Node));
-  Node* max, travel;
+  Node* max, *travel;
   //loop thru the unsorted list until it is empty
   while(list != NULL) {
-    travel = head;
+    max = list;
+    travel = list;
     //find the largest unsorted element
     while(travel != NULL) {
       if(travel->count > max->count)
@@ -60,7 +61,7 @@ Node* sort(Node* list) {
     }
 
     //remove the largest element from the unsorted list
-    head = pop(head, max->data);
+    list = pop(list, max->data);
     //add it to the end of the sorted list
     sorted = push(sorted, max->data);
   }
