@@ -20,10 +20,11 @@ int main() {
   while((c = fgetwc(stdin)) != WEOF) {
     Node* node = (Node *) malloc(sizeof(Node));
     node->data = c;
-      if (get(list, node) == NULL)
+    node->count = 0;
+      if (get(list, c) == NULL)
         list = push(list, node);
       //increment the count
-      get(list, node)->count += 1;
+      get(list, c)->count += 1;
   }
 
   //sort the completed list in descending order of occurrence

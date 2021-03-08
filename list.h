@@ -9,7 +9,9 @@ typedef struct Node {
   struct Node* next;
 } Node;
 
-extern Node* push(Node* head, wint_t data);
+extern Node* pop(Node* head, Node* del);
+
+extern Node* push(Node* head, Node* newNode);
 
 extern Node* get(Node* head, wint_t data);
 
