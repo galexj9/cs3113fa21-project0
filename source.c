@@ -16,7 +16,7 @@ int main() {
       if (get(list, c) == NULL)
         push(list, c);
       //increment the count
-      get(list, c)->count += 1;
+      //get(list, c)->count += 1;
   }
 
   //sort the completed list in descending order of occurrence

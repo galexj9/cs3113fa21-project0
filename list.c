@@ -17,13 +17,13 @@ void push(Node* head, wchar_t data) {
 //return the Node pointer with given data
 Node* get(Node* head, wchar_t data) {
   Node* travel = head;
-  while(travel->next != NULL) {
-    travel = travel->next;
+  while(travel != NULL) {
     if(travel->data = data){
-      return travel;
+      break;
     }
+    travel = travel->next;
   }
-  return NULL;
+  return travel;
 }
 
 //returns a new list sorted in descending order by count
@@ -36,7 +36,7 @@ void print(Node* head) {
   Node* travel = head;
   while(travel != NULL) {
     putchar(travel->data);
-    printf(" -> %d \n", travel->count);
+    //printf(" -> %d \n", travel->count);
     travel = travel->next;
   }
 }
