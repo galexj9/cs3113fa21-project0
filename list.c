@@ -12,9 +12,8 @@ Node* push(Node* head, wint_t data) {
     head = newNode;
   } else {
     Node* travel = head;
-    while(travel->next != NULL) {
+    while(travel->next != NULL)
       travel = travel->next;
-    }
     travel->next = newNode;
   }
 
@@ -25,29 +24,66 @@ Node* push(Node* head, wint_t data) {
 Node* get(Node* head, wint_t data) {
   Node* travel = head;
   while(travel != NULL) {
-    if(travel->data == data){
+    if(travel->data == data)
       break;
-    }
     travel = travel->next;
   }
   return travel;
 }
 
-//returns a new list sorted in descending order by count
-Node* sort(Node* head) {
+Node* pop(Node* head, wint_t data) {
+  if(head->data == data)
+    return NULL;
+
+  //find the node before the one to remove
+  Node* travel = head;
+  while(travel->next->data != data)
+    travel = travel->next;
+  //remove the Node
+  travel->next = travel->next->next;
+
   return head;
+}
+//returns a new list sorted in descending order by count
+//sorts using max sort
+Node* sort(Node* list) {
+  Node* sorted = (Node *) malloc(sizeof(Node));
+  Node* max, travel;
+  //loop thru the unsorted list until it is empty
+  while(list != NULL) {
+    travel = head;
+    //find the largest unsorted element
+    while(travel != NULL) {
+      if(travel->count > max->count)
+        max = travel;
+      travel = travel->next;
+    }
+
+    //remove the largest element from the unsorted list
+    head = pop(head, max->data);
+    //add it to the end of the sorted list
+    sorted = push(sorted, max->data);
+  }
+
+  return sorted;
 }
 
 //prints out a list with its data
 void print(Node* head) {
   Node* travel = head;
   while(travel != NULL) {
-    if(travel->data == '\n') {
-	printf("\\n->%d\n", travel->count);
-    } else {
-    printf("\%lc", travel->data);
-    printf("->%d\n", travel->count);
+    //handle line breaks and spaces separately
+    switch(travel->data) {
+      case '\n':
+        printf("\\n->%d\n", travel->count);
+        break;
+      case ' ':
+        printf("\' \'->%d\n", travel->count);
+        break;
+      default:
+        printf("\%lc", travel->data);
+        printf("->%d\n", travel->count);
     }
-    travel = travel->next;  
-}
+    travel = travel->next;
+  }
 }
