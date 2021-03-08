@@ -4,24 +4,26 @@
 #include <locale.h>
 #include "list.h"
 
+//Garrett Alexander - Check COLLABORATORS for contributions and resources
 
-//read stdin to get the binary of a valid UTF-8 file
-//count occurence of each character (even invisible ones)
-//write a list to stdout with each char in descending order of count
+/* Read stdin for a valid UTF-8 Unicode file. Then write a list
+** to stdout with each char and how often it appears in descending order
+*/
 int main() {
   setlocale(LC_ALL, "en_US.UTF-8");
 
-  //my list of all unicode characters (stored as lists) and their count
+  //my list of all unicode characters and their count
   Node* list = (Node *) malloc(sizeof(Node));
   wint_t c;
 
   //loop thru stdin for unicode chars
   while((c = fgetwc(stdin)) != WEOF) {
-    //add the completed character to the unicode list
-      if (get(list, c) == NULL)
-        list = push(list, c);
+    Node* node = (Node *) malloc(sizeof(Node));
+    node->data = c;
+      if (get(list, node) == NULL)
+        list = push(list, node);
       //increment the count
-      get(list, c)->count += 1;
+      get(list, node)->count += 1;
   }
 
   //sort the completed list in descending order of occurrence
