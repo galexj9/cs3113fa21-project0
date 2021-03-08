@@ -10,14 +10,13 @@
 
 //add a new node with data to the end of a list
 Node* push(Node* head, Node* newNode) {
-  if(head == NULL) {
-    head = newNode;
-  } else {
-    Node* travel = head;
-    while(travel->next != NULL)
-      travel = travel->next;
-    travel->next = newNode;
-  }
+  if(head == NULL)
+    return newNode;
+
+  Node* travel = head;
+  while(travel->next)
+    travel = travel->next;
+  travel->next = newNode;
   return head;
 }
 
@@ -26,23 +25,25 @@ void swap(Node* a, Node* b){
   Node* temp = (Node *) malloc(sizeof(Node));
   temp->count = a->count;
   temp->data = a->data;
+
   a->count = b->count;
   a->data = b->data;
+
   b->count = temp->count;
   b->data = temp->data;
+
   free(temp);
 }
 
-//returns a new list sorted in descending order by count using max sort
+//returns a new list sorted in descending order by count using insertion sort
 void sort(Node* list) {
   Node* start = list;
-  Node* travel;
-  Node* max;
+  Node* travel, *max;
 
-  while(start->next != NULL) {
+  while(start->next) {
     max = start;
     travel = start->next;
-    while(travel != NULL) {
+    while(travel) {
       if(travel->count > max->count)
         max = travel;
       travel = travel->next;
@@ -55,7 +56,7 @@ void sort(Node* list) {
 //return the Node pointer with given data
 Node* get(Node* head, wint_t data) {
   Node* travel = head;
-  while(travel != NULL) {
+  while(travel) {
     if(travel->data == data)
       break;
     travel = travel->next;
