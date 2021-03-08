@@ -14,7 +14,7 @@ int main() {
   while((c = fgetc(stdin)) != EOF) {
     //add the completed character to the unicode list
       if (get(list, c) == NULL)
-        push(list, c);
+        list = push(list, c);
       //increment the count
       //get(list, c)->count += 1;
   }

@@ -7,11 +7,17 @@ void push(Node* head, wchar_t data) {
   Node* newNode = (Node *) malloc(sizeof(Node));
   newNode->data = data;
 
-  Node* travel = head;
-  while(travel->next != NULL) {
-    travel = travel->next;
+  if(head == NULL) {
+    head = newNode;
+  } else {
+    Node* travel = head;
+    while(travel->next != NULL) {
+      travel = travel->next;
+    }
+    travel->next = newNode;
   }
-  travel->next = newNode;
+
+  return head;
 }
 
 //return the Node pointer with given data
@@ -35,8 +41,8 @@ Node* sort(Node* head) {
 void print(Node* head) {
   Node* travel = head;
   while(travel != NULL) {
-    putchar(travel->data);
-    //printf(" -> %d \n", travel->count);
+    fputc(travel->data);
+    fprintf("->%d \n", travel->count);
     travel = travel->next;
   }
 }

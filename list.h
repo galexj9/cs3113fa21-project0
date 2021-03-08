@@ -8,7 +8,7 @@ typedef struct Node {
   struct Node* next;
 } Node;
 
-extern void push(Node* head, wchar_t data);
+extern Node* push(Node* head, wchar_t data);
 
 extern Node* get(Node* head, wchar_t data);
 
