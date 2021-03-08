@@ -12,7 +12,7 @@ extern void push(Node* head, void* data);
 
 extern Node* get(Node* head, void* data);
 
-extern Node* sort(Node* head, void* data);
+extern Node* sort(Node* head);
 
 extern void print(Node* head);
 
