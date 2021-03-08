@@ -10,7 +10,7 @@
 
 //add a new node with data to the end of a list
 Node* push(Node* head, Node* newNode) {
-  if(head->data == 0) {
+  if(head == NULL) {
     head = newNode;
   } else {
     Node* travel = head;
@@ -19,7 +19,7 @@ Node* push(Node* head, Node* newNode) {
     travel->next = newNode;
   }
   return head;
-} 
+}
 
 //removes a given node from a list
 Node* pop(Node* head, Node* del) {
@@ -28,7 +28,7 @@ Node* pop(Node* head, Node* del) {
 
   //find the node previous the one to remove
   Node* travel = head;
-  while(travel->next != del)
+  while(travel->next->data != del->data)
     travel = travel->next;
   //remove the Node
   travel->next = travel->next->next;
@@ -38,15 +38,16 @@ Node* pop(Node* head, Node* del) {
 
 //returns a new list sorted in descending order by count using max sort
 Node* sort(Node* list) {
-  Node* sorted = (Node *) malloc(sizeof(Node));
+  Node* sorted = NULL;
   Node* max;
   Node* travel;
-  printf("hello");
-  
+
   //loop thru the unsorted list until it is empty
+  //removing the largest element with each scan
   while(list != NULL) {
     travel = list;
-    max = travel;
+    max = list;
+
     //find the largest unsorted element
     while(travel != NULL) {
       if(travel->count > max->count)
