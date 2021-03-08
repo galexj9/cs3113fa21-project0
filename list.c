@@ -8,7 +8,7 @@ Node* push(Node* head, wint_t data) {
   Node* newNode = (Node *) malloc(sizeof(Node));
   newNode->data = data;
 
-  if(head == NULL) {
+  if(head->data == 0) {
     head = newNode;
   } else {
     Node* travel = head;
@@ -25,7 +25,7 @@ Node* push(Node* head, wint_t data) {
 Node* get(Node* head, wint_t data) {
   Node* travel = head;
   while(travel != NULL) {
-    if(travel->data = data){
+    if(travel->data == data){
       break;
     }
     travel = travel->next;
@@ -40,10 +40,14 @@ Node* sort(Node* head) {
 
 //prints out a list with its data
 void print(Node* head) {
-  printf("printing: \n");
   Node* travel = head;
   while(travel != NULL) {
-    printf("%lc->%d", travel->data, travel->count);
-    travel = travel->next;
-  }
+    if(travel->data == '\n') {
+	printf("\\n->%d\n", travel->count);
+    } else {
+    printf("\%lc", travel->data);
+    printf("->%d\n", travel->count);
+    }
+    travel = travel->next;  
+}
 }
