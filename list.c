@@ -18,7 +18,7 @@ Node* push(Node* head, Node* newNode) {
       travel = travel->next;
     travel->next = newNode;
   }
-  return head;
+  return head; 
 }
 
 //removes a given node from a list
