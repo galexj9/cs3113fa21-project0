@@ -3,19 +3,19 @@ TARGET = project0
 SRC = source.c list.c
 OBJ = $(SRC:.c=.o)
 HEAD = list.h
-CFLAGS = -g
-CC = gcc
+CC = gcc -g
 
 
 all: $(TARGET)
 
 #Compiles TARGET using all the OBJ files
 $(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
+	$(CC) -o $(TARGET) $(OBJ)
 
 #pattern rule to make all obj files. $< translates to source file. $@ is the target
+#Both (all) .c files require list.h to build
 %.o: %.c $(HEAD)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) -c $< -o $@
 
 #removes all object files and the exe
 clean:
