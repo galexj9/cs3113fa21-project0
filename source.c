@@ -10,6 +10,7 @@
 ** to stdout with each char and how often it appears in descending order
 */
 int main() {
+  //tells fgetwc() how to accurately read the UTF-8 encoding
   setlocale(LC_ALL, "en_US.UTF-8");
 
   //my list of all unicode characters and their count

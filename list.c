@@ -3,7 +3,7 @@
 #include <wchar.h>
 #include "list.h"
 
-/* This file, along with list.h contains functions for using the
+/* This file, along with list.h, contains functions for using the
 ** Node struct.  The Nodes construct a singly-linked list.
 ** Node { int count; wint_t data; struct Node* next; };
 */
@@ -35,21 +35,21 @@ void swap(Node* a, Node* b){
   free(temp);
 }
 
-//returns a new list sorted in descending order by count using insertion sort
+//returns a new list sorted in descending order by count using max sort
 void sort(Node* list) {
-  Node* start = list;
+  Node* front = list;
   Node* travel, *max;
 
-  while(start->next) {
-    max = start;
-    travel = start->next;
+  while(front->next) {
+    max = front;
+    travel = front->next;
     while(travel) {
       if(travel->count > max->count)
         max = travel;
       travel = travel->next;
     }
-    swap(start, max); //move the max el to the top of the list
-    start = start->next; //move on down
+    swap(front, max); //move the max el to the end of the sorted section
+    front = front->next; //move down from the sorted section
   }
 }
 
@@ -64,22 +64,19 @@ Node* get(Node* head, wint_t data) {
   return travel;
 }
 
-//prints out a list with its data
+//prints out the unicode chars followed by an arrow and their occurance count
+//ex: "a->4"
 void print(Node* head) {
   Node* travel = head;
   while(travel != NULL) {
-    //handle line breaks and spaces separately
-    switch(travel->data) {
-      case '\n':
-        printf("\\n->%d\n", travel->count);
-        break;
-      case ' ':
-        printf("\' \'->%d\n", travel->count);
-        break;
-      default:
-        printf("%lc", travel->data);
-        printf("->%d\n", travel->count);
+    //handle line breaks separately
+    if(travel->data == '\n') {
+      printf("\\n->%d\n", travel->count);
+    } else {
+      printf("%lc", travel->data);
+      printf("->%d\n", travel->count);
     }
+
     travel = travel->next;
   }
 }

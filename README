@@ -1,7 +1,17 @@
-# cs3113sp21-project0
-Introduction to OS Class Project 0 - Decoding UTF-8
+##cs3113sp21-project0
+#Introduction to OS Class Project 0 - Decoding UTF-8
 
 Garrett Alexander
 113414058
 alex0110
 Garrett.J.Alexander-1@ou.edu
+
+##How to Use
+- from the command line run 'make' to build the project
+- Run project0 with a chosen file directed to stdin
+- ex: ./project0 < readFile > readOut
+- ex: cat test1 | project0
+
+##Requirements and Limitations
+- This program is designed to run exclusively on valid, US-English, UTF-8 files.
+- Running non-valid files results in fgetwc() throwing silent invalid char errors.

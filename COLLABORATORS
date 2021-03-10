@@ -1,4 +1,4 @@
-A list of collaboratorss and sources that helped build or inspire the code base.
+A list of collaborators and sources that helped build or inspire the code base.
 
 
 Make File
@@ -11,3 +11,7 @@ Bit Masking
 
 Typedef in list.h
 - C - typedef https://www.tutorialspoint.com/cprogramming/c_typedef.htm
+
+Reading UTF-8
+- Set Locale cpp reference https://en.cppreference.com/w/c/locale/setlocale
+- Stack overflow page that inspired me to read up on wchar's and setlocale https://stackoverflow.com/questions/44398296/is-it-actually-possible-to-store-and-process-individual-utf-8-characters-on-c

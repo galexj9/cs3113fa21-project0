@@ -17,4 +17,7 @@ extern void sort(Node* head);
 
 extern void print(Node* head);
 
+//private function to list.c
+//extern Node* swap(Node* a, Node* b);
+
 #endif
