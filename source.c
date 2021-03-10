@@ -20,12 +20,12 @@ int main() {
   //loop thru stdin for unicode chars
   while((c = fgetwc(stdin)) != WEOF) {
     Node* node = (Node *) malloc(sizeof(Node));
-    node->data = c;
+    node->data = (void *) &c;
     node->count = 0;
-      if (get(list, c) == NULL)
+      if (get(list, (void *) &c) == NULL)
         list = push(list, node);
       //increment the count
-      get(list, c)->count += 1;
+      get(list, (void *) c)->count += 1;
   }
 
   //sort the completed list in descending order of occurrence

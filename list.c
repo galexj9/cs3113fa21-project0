@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <wchar.h>
 #include "list.h"
 
 /* This file, along with list.h, contains functions for using the
@@ -54,10 +53,10 @@ void sort(Node* list) {
 }
 
 //return the Node pointer with given data
-Node* get(Node* head, wint_t data) {
+Node* get(Node* head, void* data) {
   Node* travel = head;
   while(travel) {
-    if(travel->data == data)
+    if(travel->data == *data)
       break;
     travel = travel->next;
   }
