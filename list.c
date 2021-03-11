@@ -68,18 +68,8 @@ Node* get(Node* head, char* data) {
 void print(Node* head) {
   Node* travel = head;
   while(travel != NULL) {
-    //handle line breaks separately
-    write(stdout, travel->data, travel->dataLen);
+    fwrite(travel->data, sizeof(travel->data), 1, stdout);
     printf("->%d\n", travel->count);
-
-    /*
-    if(*travel->data == '\n') {
-      printf("\\n->%d\n", travel->count);
-    } else {
-      printf("%s", travel->data);
-      printf("->%d\n", travel->count);
-    }
-    */
 
     travel = travel->next;
   }

@@ -20,12 +20,15 @@ int main() {
     int cBits = (int) c;
     int byteCount = 1;
     if(cBits & 0x80 != 0)
-      while((cBits << 1) & 0x80 == 1)
-        btyteCount++;
+      while(cBits & 0x80 == 1) {
+        byteCount++;
+        cBits = cBits << 1;
+      }
 
     char* fullChar = (char *) malloc(byteCount * sizeof(char));
     ungetc(c, stdin); //return c to stdin to read on the next line
-    node->dataLen = read(stdin, fullChar, byteCount); //write byteCount # bits to fullChar
+    node->dataLen = byteCount;
+    fread(fullChar, sizeof(char) * byteCount, 1, stdin); //write byteCount # bits to fullChar
     node->data = fullChar;
 
     if (get(list, fullChar) == NULL)
