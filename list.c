@@ -68,11 +68,9 @@ Node* get(Node* head, char* data) {
 void print(Node* head) {
   Node* travel = head;
   while(travel != NULL) {
-    if(*travel->data != '\n') {
-    printf("%s->%d\n", travel->data, travel->count);
-    } else {
-    printf("\\n->%d\n", travel->count);
-    } 
+    (*travel->data == '\n')?
+      printf("\\n->%d\n", travel->count)
+      : printf("%s->%d\n", travel->data, travel->count);
     travel = travel->next;
   }
 }
