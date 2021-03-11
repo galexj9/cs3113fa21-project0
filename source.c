@@ -25,7 +25,7 @@ int main() {
     Node* node = (Node *) malloc(sizeof(Node));
     node->data = (char *) malloc(byteCount * sizeof(char));
     node->dataLen = fread(node->data, sizeof(char), byteCount, stdin); //write byteCount # bits to fullChar
-
+    
     if (get(list, node->data) == NULL)
       list = push(list, node);
     get(list, node->data)->count += 1;
@@ -41,12 +41,10 @@ int main() {
 
 
 int countBytes(char* c) {
-  if(*c & 0x80 != 0x80) return 1;
- 
-  int byteCount = 1;
+  int byteCount = 0;
   while((*c & 0x80) == 0x80) {
       byteCount++;
       *c <<= 1;
   }
-  return byteCount;
+  return byteCount? byteCount: 1;
 }
