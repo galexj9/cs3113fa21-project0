@@ -24,7 +24,7 @@ int main() {
     //read out the full unicode character
     Node* node = (Node *) malloc(sizeof(Node));
     node->data = (char *) malloc(byteCount * sizeof(char));
-    node->dataLen = fread(node->data, sizeof(char), byteCount, stdin); //write byteCount # bits to fullChar
+    fread(node->data, sizeof(char), byteCount, stdin); //write byteCount # bits to fullChar
     
     if (get(list, node->data) == NULL)
       list = push(list, node);
@@ -40,11 +40,12 @@ int main() {
 }
 
 
+//counts the number of bytes in a single unicode char from the first byte
 int countBytes(char* c) {
   int byteCount = 0;
-  while((*c & 0x80) == 0x80) {
+  while((*c & 0x80) == 0x80) {  //while the MSB is 1
       byteCount++;
       *c <<= 1;
   }
-  return byteCount? byteCount: 1;
+  return byteCount? byteCount: 1; //never read 0 bytes
 }

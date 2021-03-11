@@ -5,7 +5,6 @@
 typedef struct Node {
   int count;
   char* data;
-  int dataLen;
   struct Node* next;
 } Node;
 

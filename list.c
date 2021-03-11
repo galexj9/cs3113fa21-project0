@@ -4,10 +4,10 @@
 
 /* This file, along with list.h, contains functions for using the
 ** Node struct.  The Nodes construct a singly-linked list.
-** Node { int count; wint_t data; struct Node* next; };
+** Node { int count; char* data; struct Node* next; };
 */
 
-//add a new node with data to the end of a list
+//add a new node to the end of a list
 Node* push(Node* head, Node* newNode) {
   if(head == NULL)
     return newNode;
