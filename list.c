@@ -53,10 +53,10 @@ void sort(Node* list) {
 }
 
 //return the Node pointer with given data
-Node* get(Node* head, void* data) {
+Node* get(Node* head, char* data) {
   Node* travel = head;
   while(travel) {
-    if(travel->data == *data)
+    if(travel->data == data)
       break;
     travel = travel->next;
   }
@@ -72,7 +72,7 @@ void print(Node* head) {
     if(travel->data == '\n') {
       printf("\\n->%d\n", travel->count);
     } else {
-      printf("%lc", travel->data);
+      //printf("%c", travel->data);
       printf("->%d\n", travel->count);
     }
 

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <wchar.h>
 #include <locale.h>
 #include "list.h"
 
@@ -10,22 +9,19 @@
 ** to stdout with each char and how often it appears in descending order
 */
 int main() {
-  //tells fgetwc() how to accurately read the UTF-8 encoding
-  setlocale(LC_ALL, "en_US.UTF-8");
-
   //my list of all unicode characters and their count
   Node* list = NULL;
-  wint_t c;
+  char* c;
 
   //loop thru stdin for unicode chars
-  while((c = fgetwc(stdin)) != WEOF) {
+  while((c = getc(stdin)) != EOF) {
     Node* node = (Node *) malloc(sizeof(Node));
-    node->data = (void *) &c;
-    node->count = 0;
-      if (get(list, (void *) &c) == NULL)
+    node->data = c;
+    //node->count = 0;
+      if (get(list, node->data) == NULL)
         list = push(list, node);
       //increment the count
-      get(list, (void *) c)->count += 1;
+      get(list, node->data)->count += 1;
   }
 
   //sort the completed list in descending order of occurrence
