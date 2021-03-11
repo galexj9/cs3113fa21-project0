@@ -9,14 +9,14 @@
 ** to stdout with each char and how often it appears in descending order
 */
 int main() {
-  //my list of all unicode characters and their count
   Node* list = NULL;
   char c;
 
   //loop thru stdin for chars
   while((c = (char) getc(stdin)) != EOF) {
-    Node* node = (Node *) malloc(sizeof(Node));
-
+    //return c to stdin so it can be read to fullChar buffer after we know the full length
+    ungetc(c, stdin);
+    //count how long the next unicode character is going to be
     int cBits = (int) c;
     int byteCount = 1;
     if(cBits & 0x80 != 0)
@@ -24,17 +24,16 @@ int main() {
         byteCount++;
         cBits = cBits << 1;
       }
+    printf("%d\n", byteCount);
 
-    char* fullChar = (char *) malloc(byteCount * sizeof(char));
-    ungetc(c, stdin); //return c to stdin to read on the next line
-    node->dataLen = byteCount;
-    fread(fullChar, sizeof(char) * byteCount, 1, stdin); //write byteCount # bits to fullChar
-    node->data = fullChar;
+    //read out the full unicode character
+    Node* node = (Node *) malloc(sizeof(Node));
+    node->data = (char *) malloc(byteCount * sizeof(char));
+    node->dataLen = fread(node->data, sizeof(char), byteCount, stdin); //write byteCount # bits to fullChar
 
-    if (get(list, fullChar) == NULL)
+    if (get(list, node->data) == NULL)
       list = push(list, node);
-    //increment the count
-    get(list, fullChar)->count += 1;
+    get(list, node->data)->count += 1;
   }
 
   //sort the completed list in descending order of occurrence
