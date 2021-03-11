@@ -11,17 +11,18 @@
 int main() {
   //my list of all unicode characters and their count
   Node* list = NULL;
-  char* c;
+  char c;
 
   //loop thru stdin for unicode chars
-  while((*c = (char) getc(stdin)) != EOF) {
+  while((c = (char) getc(stdin)) != EOF) {
     Node* node = (Node *) malloc(sizeof(Node));
-    node->data = c;
-    //node->count = 0;
-      if (get(list, node->data) == NULL)
+    node->data = (char*) malloc(sizeof(char));
+    node->count = 0;
+    node->data = &c;
+      if (get(list, &c) == NULL)
         list = push(list, node);
       //increment the count
-      get(list, node->data)->count += 1;
+      get(list, &c)->count += 1;
   }
 
   //sort the completed list in descending order of occurrence

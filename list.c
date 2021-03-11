@@ -56,7 +56,7 @@ void sort(Node* list) {
 Node* get(Node* head, char* data) {
   Node* travel = head;
   while(travel) {
-    if(travel->data == data)
+    if(*travel->data == *data)
       break;
     travel = travel->next;
   }
@@ -69,10 +69,10 @@ void print(Node* head) {
   Node* travel = head;
   while(travel != NULL) {
     //handle line breaks separately
-    if(travel->data == '\n') {
+    if(*travel->data == '\n') {
       printf("\\n->%d\n", travel->count);
     } else {
-      //printf("%c", travel->data);
+      printf("%s", travel->data);
       printf("->%d\n", travel->count);
     }
 
