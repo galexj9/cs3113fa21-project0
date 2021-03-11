@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>   //fread()
+#include <stdlib.h>  //malloc()
 #include "list.h"
 
 int countBytes(char* c);
@@ -26,7 +26,7 @@ int main() {
     Node* node = (Node *) malloc(sizeof(Node));
     node->data = (char *) malloc(byteCount * sizeof(char));
     fread(node->data, sizeof(char), byteCount, stdin);
-    
+
     if (get(list, node->data) == NULL)
       list = push(list, node);
     get(list, node->data)->count += 1;

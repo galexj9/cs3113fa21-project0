@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>  //printf()
+#include <stdlib.h>  //malloc()
 #include "list.h"
 
 /* This file, along with list.h, contains functions for using the

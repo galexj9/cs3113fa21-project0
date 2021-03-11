@@ -19,4 +19,4 @@ $(TARGET): $(OBJ)
 
 #removes all object files and the exe
 clean:
-	rm -f *.o $(TARGET)
+	rm -f $(OBJ) $(TARGET)
