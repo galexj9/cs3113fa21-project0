@@ -13,16 +13,25 @@ int main() {
   Node* list = NULL;
   char c;
 
-  //loop thru stdin for unicode chars
+  //loop thru stdin for chars
   while((c = (char) getc(stdin)) != EOF) {
     Node* node = (Node *) malloc(sizeof(Node));
-    node->data = (char*) malloc(sizeof(char));
-    node->count = 0;
-    node->data = &c;
-      if (get(list, &c) == NULL)
-        list = push(list, node);
-      //increment the count
-      get(list, &c)->count += 1;
+
+    int cBits = (int) c;
+    int byteCount = 1;
+    if(cBits & 0x80 != 0)
+      while((cBits << 1) & 0x80 == 1)
+        btyteCount++;
+
+    char* fullChar = (char *) malloc(byteCount * sizeof(char));
+    ungetc(c, stdin); //return c to stdin to read on the next line
+    node->dataLen = read(stdin, fullChar, byteCount); //write byteCount # bits to fullChar
+    node->data = fullChar;
+
+    if (get(list, fullChar) == NULL)
+      list = push(list, node);
+    //increment the count
+    get(list, fullChar)->count += 1;
   }
 
   //sort the completed list in descending order of occurrence
