@@ -25,7 +25,7 @@ int main() {
     //read out the full unicode character
     Node* node = (Node *) malloc(sizeof(Node));
     node->data = (char *) malloc(byteCount * sizeof(char));
-    fread(node->data, sizeof(char), byteCount, stdin);
+    node->dataLen = fread(node->data, sizeof(char), byteCount, stdin);
 
     if (get(list, node->data) == NULL)
       list = push(list, node);

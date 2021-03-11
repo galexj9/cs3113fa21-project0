@@ -68,7 +68,7 @@ void print(Node* head) {
     if(*travel->data == '\n'){
       printf("\\n->%d\n", travel->count);
     } else {
-      fwrite(travel->data, sizeof(*travel->data), 1, stdout);
+      fwrite(travel->data, travel->dataLen, 1, stdout);
       printf("->%d\n", travel->count);
     }
     travel = travel->next;
