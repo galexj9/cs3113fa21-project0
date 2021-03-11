@@ -1,5 +1,4 @@
 #include <stdio.h>  //printf()
-#include <stdlib.h>  //malloc()
 #include "list.h"
 
 /* This file, along with list.h, contains functions for using the
@@ -21,7 +20,7 @@ Node* push(Node* head, Node* newNode) {
 
 //swaps the data of two nodes
 void swap(Node* a, Node* b){
-  Node* temp = (Node *) malloc(sizeof(Node));
+  Node* temp;
   temp->count = a->count;
   temp->data = a->data;
 
@@ -30,8 +29,6 @@ void swap(Node* a, Node* b){
 
   b->count = temp->count;
   b->data = temp->data;
-
-  free(temp);
 }
 
 //returns a new list sorted in descending order by count using max sort
@@ -68,9 +65,12 @@ Node* get(Node* head, char* data) {
 void print(Node* head) {
   Node* travel = head;
   while(travel) {
-    (*travel->data == '\n')?
-      printf("\\n->%d\n", travel->count)
-      : printf("%s->%d\n", travel->data, travel->count);
+    if(*travel->data == '\n'){
+      printf("\\n->%d\n", travel->count);
+    } else {
+      fwrite(travel->data, sizeof(*travel->data), 1, stdout);
+      printf("->%d\n", travel->count);
+    }
     travel = travel->next;
   }
 }
