@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include "list.h"
+
+int countBytes(char* c);
 
 //Garrett Alexander - Check COLLABORATORS for contributions and resources
 
@@ -10,23 +11,15 @@
 */
 int main() {
   Node* list = NULL;
-  char c;
+  char* c;
 
   //loop thru stdin for chars
-  while((c = (char) getc(stdin)) != EOF) {
+  while(fread(c, sizeof(char), 1, stdin) == sizeof(char)) {
     //return c to stdin so it can be read to fullChar buffer after we know the full length
-    ungetc(c, stdin);
+    ungetc(*c, stdin);
 
     //count how long the next unicode character is going to be
-    int cBits = (int) c;
-    int byteCount = 1;
-    if(cBits & 0x80 != 0x00) {
-      while(cBits & 0x80 != 0x00) {
-        byteCount++;
-        cBits = cBits << 1;
-      }
-    }
-    printf("%d\n", byteCount);
+    int byteCount = countBytes(c);
 
     //read out the full unicode character
     Node* node = (Node *) malloc(sizeof(Node));
@@ -44,4 +37,16 @@ int main() {
   //print out the sorted list (to stdout)
   print(list);
   return 0;
+}
+
+
+int countBytes(char* c) {
+  if(*c & 0x80 != 0x80) return 1;
+ 
+  int byteCount = 1;
+  while((*c & 0x80) == 0x80) {
+      byteCount++;
+      *c <<= 1;
+  }
+  return byteCount;
 }
