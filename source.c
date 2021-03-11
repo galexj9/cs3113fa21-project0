@@ -14,6 +14,7 @@ int main() {
   char* c;
 
   //loop thru stdin for chars
+  //fread() returns the length of what was written, it will differ from size(char) only at EOF or on error
   while(fread(c, sizeof(char), 1, stdin) == sizeof(char)) {
     //return c to stdin so it can be read to fullChar buffer after we know the full length
     ungetc(*c, stdin);
@@ -24,7 +25,7 @@ int main() {
     //read out the full unicode character
     Node* node = (Node *) malloc(sizeof(Node));
     node->data = (char *) malloc(byteCount * sizeof(char));
-    fread(node->data, sizeof(char), byteCount, stdin); //write byteCount # bits to fullChar
+    fread(node->data, sizeof(char), byteCount, stdin);
     
     if (get(list, node->data) == NULL)
       list = push(list, node);
