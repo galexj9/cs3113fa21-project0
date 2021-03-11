@@ -20,11 +20,12 @@ int main() {
     //count how long the next unicode character is going to be
     int cBits = (int) c;
     int byteCount = 1;
-    if((cBits << 1) & 0x80 != 0)
-      while(cBits & 0x80 == 1) {
+    if(cBits & 0x80 != 0x00) {
+      while(cBits & 0x80 != 0x00) {
         byteCount++;
         cBits = cBits << 1;
       }
+    }
     printf("%d\n", byteCount);
 
     //read out the full unicode character
