@@ -16,10 +16,11 @@ int main() {
   while((c = (char) getc(stdin)) != EOF) {
     //return c to stdin so it can be read to fullChar buffer after we know the full length
     ungetc(c, stdin);
+
     //count how long the next unicode character is going to be
     int cBits = (int) c;
     int byteCount = 1;
-    if(cBits & 0x80 != 0)
+    if((cBits << 1) & 0x80 != 0)
       while(cBits & 0x80 == 1) {
         byteCount++;
         cBits = cBits << 1;
