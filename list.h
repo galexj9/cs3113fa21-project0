@@ -3,7 +3,7 @@
 #define LIST_H_
 
 typedef struct Node {
-  int count = 0;
+  int count;
   char* data;
   struct Node* next;
 } Node;

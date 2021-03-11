@@ -14,7 +14,7 @@ int main() {
   char* c;
 
   //loop thru stdin for unicode chars
-  while((c = getc(stdin)) != EOF) {
+  while((*c = (char) getc(stdin)) != EOF) {
     Node* node = (Node *) malloc(sizeof(Node));
     node->data = c;
     //node->count = 0;
