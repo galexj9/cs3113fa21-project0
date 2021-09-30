@@ -1,5 +1,5 @@
 Introduction to OS Class Project 0 - Decoding UTF-8
-cs3113sp21-project0
+cs3113fa21-project0
 Garrett Alexander
 
 How to Use
@@ -9,6 +9,6 @@ How to Use
 - ex: cat test1 | project0
 
 Requirements and Limitations
-- This program is designed to run exclusively on valid, US-English, UTF-8 files.
-- Running non-valid files results in fgetwc() throwing silent invalid char errors.
-- The sort() function runs in O(1) space but O(n^2) time where n = # of unique chars.
+- This program is designed to run exclusively on valid UTF-8 files.
+- Not all terminals are capable of displaying all valid unicode.  
+- O(n) total chars or O(n^2) where n = # of unique chars whichever is larger.

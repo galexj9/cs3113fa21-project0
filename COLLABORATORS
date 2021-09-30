@@ -1,20 +1,18 @@
 A list of collaborators and sources that helped build or inspire the code base.
 
-Me: I wrote all of the code, C, make, and script, found in this repo.
+Me:
 - Garrett Alexander
 - 113414058 | alex0110 | Garrett.J.Alexander-1@ou.edu
 
-Make File
+Makefile
 - A Quick Introduction to Make Files | https://courses.cs.washington.edu/courses/cse451/99wi/Section/makeintro.html
 - GNU Make File | https://www.gnu.org/software/make/manual/make.html
 
 Bit Masking
-- LearnCpp.com - Bit Manipulation with Bitwise operations and bit masks | https://www.learncpp.com/cpp-tutorial/bit-manipulation-with-bitwise-operators-and-bit-masks/
+- Bit Manipulation with Bitwise operations and bit masks | https://www.learncpp.com/cpp-tutorial/bit-manipulation-with-bitwise-operators-and-bit-masks/
 
 Typedef
-- C - typedef https://www.tutorialspoint.com/cprogramming/c_typedef.htm
+- C typedef | https://www.tutorialspoint.com/cprogramming/c_typedef.htm
 
-Reading UTF-8
-- Set Locale cpp reference https://en.cppreference.com/w/c/locale/setlocale
-- Wide Chars - IBM Knowledge Center https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_73/rtref/fgetwc.htm
-- Stack overflow page that inspired me to read up on wchar's and setlocale https://stackoverflow.com/questions/44398296/is-it-actually-possible-to-store-and-process-individual-utf-8-characters-on-c
+Memcmp 
+- C Language: memcmp function - https://www.techonthenet.com/c_language/standard_library_functions/string_h/memcmp.php

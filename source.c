@@ -7,9 +7,8 @@ void printOut(Node* list);
 
 //Garrett Alexander
 
-/* Read stdin for a valid UTF-8 Unicode file. Then write a list
-** to stdout with each char and how often it appears in descending order
-*/
+/* Read stdin for valid UTF-8 Unicode. Then write a list
+** of all chars in descending order to stdout 				*/
 int main() {
   Node* list = NULL;
   char* c;
@@ -27,19 +26,19 @@ int main() {
     node->data = (char *) malloc(byteCount * sizeof(char));
     node->dataLen = (int) fread(node->data, sizeof(char), byteCount, stdin);
 
-		//printf("%s\n", node->data);
-
+		//push new chars to the list and inc count
     if (get(list, node->data, node->dataLen) == NULL)
       list = push(list, node);
     get(list, node->data, node->dataLen)->count += 1;
   }
 
-  //sorts in descending order by count
+  //sort list in descending order by count
   list = sort(list);
   printOut(list);
   return 0;
 }
 
+//prints a linked Node* list in the format 'char->count'
 void printOut(Node* list) {
 	while(list) {
 		(*list->data == '\n')?
@@ -52,7 +51,6 @@ void printOut(Node* list) {
 
 //counts the number of bytes in a single unicode char from the first byte
 int countBytes(char* c) {
-	if (*c == '\n') return 1;
   int byteCount = 0;
   while((*c & 0x80) == 0x80) {  //while the MSB is 1
       byteCount++;
