@@ -1,0 +1,9 @@
+#File types to exclude from github
+*.o
+*.out
+*.exe
+*.save
+
+#Specific files to exclude from github
+testing
+project0

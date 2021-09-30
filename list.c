@@ -1,9 +1,10 @@
-#include <stdio.h>  //printf()
+#include <stdlib.h>
+#include <string.h>
 #include "list.h"
 
 /* This file, along with list.h, contains functions for using the
 ** Node struct.  The Nodes construct a singly-linked list.
-** Node { int count; char* data; struct Node* next; };
+** Node { int count; char* data; int dataLen; struct Node* next; };
 */
 
 //add a new node to the end of a list
@@ -20,19 +21,23 @@ Node* push(Node* head, Node* newNode) {
 
 //swaps the data of two nodes
 void swap(Node* a, Node* b){
-  Node* temp;
-  temp->count = a->count;
-  temp->data = a->data;
+  Node* temp = (Node*)malloc(sizeof(Node));
+	temp->data = a->data;
+	temp->count = a->count;
+	temp->dataLen = a->dataLen;
+	
+	a->data = b->data;
+	a->count = b->count;
+	a->dataLen = b->dataLen;
 
-  a->count = b->count;
-  a->data = b->data;
-
-  b->count = temp->count;
-  b->data = temp->data;
+	b->data = temp->data;
+	b->count = temp->count;
+	b->dataLen = temp->dataLen;
+	free(temp);
 }
 
 //returns a new list sorted in descending order by count using max sort
-void sort(Node* list) {
+Node* sort(Node* list) {
   Node* front = list;
   Node* travel, *max;
 
@@ -47,30 +52,17 @@ void sort(Node* list) {
     swap(front, max); //move the max el to the end of the sorted section
     front = front->next; //move down from the sorted section
   }
+	return list;
 }
 
 //return the Node pointer with given data
-Node* get(Node* head, char* data) {
+Node* get(Node* head, char* data, int dataLen) {
   Node* travel = head;
   while(travel) {
-    if(*travel->data == *data)
-      break;
+    if(travel->dataLen == dataLen &&
+				0 == memcmp(travel->data, data, dataLen))
+			break;
     travel = travel->next;
   }
   return travel;
-}
-
-//prints out the unicode chars followed by an arrow and their occurance count
-//ex: "a->4"
-void print(Node* head) {
-  Node* travel = head;
-  while(travel) {
-    if(*travel->data == '\n'){
-      printf("\\n->%d\n", travel->count);
-    } else {
-      fwrite(travel->data, travel->dataLen, 1, stdout);
-      printf("->%d\n", travel->count);
-    }
-    travel = travel->next;
-  }
 }

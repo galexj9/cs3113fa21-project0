@@ -3,8 +3,9 @@
 #include "list.h"
 
 int countBytes(char* c);
+void printOut(Node* list);
 
-//Garrett Alexander - Check COLLABORATORS for contributions and resources
+//Garrett Alexander
 
 /* Read stdin for a valid UTF-8 Unicode file. Then write a list
 ** to stdout with each char and how often it appears in descending order
@@ -14,9 +15,8 @@ int main() {
   char* c;
 
   //loop thru stdin for chars
-  //fread() returns the length of what was written, it will differ from size(char) only at EOF or on error
-  while(fread(c, sizeof(char), 1, stdin) == sizeof(char)) {
-    //return c to stdin so it can be read to fullChar buffer after we know the full length
+  while (fread(c, sizeof(char), 1, stdin) == sizeof(char)) {
+    //return c to stdin so it can be read to fullChar buffer
     ungetc(*c, stdin);
 
     //count how long the next unicode character is going to be
@@ -25,24 +25,34 @@ int main() {
     //read out the full unicode character
     Node* node = (Node *) malloc(sizeof(Node));
     node->data = (char *) malloc(byteCount * sizeof(char));
-    node->dataLen = fread(node->data, sizeof(char), byteCount, stdin);
+    node->dataLen = (int) fread(node->data, sizeof(char), byteCount, stdin);
 
-    if (get(list, node->data) == NULL)
+		//printf("%s\n", node->data);
+
+    if (get(list, node->data, node->dataLen) == NULL)
       list = push(list, node);
-    get(list, node->data)->count += 1;
+    get(list, node->data, node->dataLen)->count += 1;
   }
 
-  //sort the completed list in descending order of occurrence
-  sort(list);
-
-  //print out the sorted list (to stdout)
-  print(list);
+  //sorts in descending order by count
+  list = sort(list);
+  printOut(list);
   return 0;
+}
+
+void printOut(Node* list) {
+	while(list) {
+		(*list->data == '\n')?
+			printf("\\n->%d\n", list->count) :
+			printf("%s->%d\n", list->data, list->count);
+		list = list->next;
+	}
 }
 
 
 //counts the number of bytes in a single unicode char from the first byte
 int countBytes(char* c) {
+	if (*c == '\n') return 1;
   int byteCount = 0;
   while((*c & 0x80) == 0x80) {  //while the MSB is 1
       byteCount++;
