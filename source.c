@@ -1,6 +1,6 @@
 #include <stdio.h>   //fread()
 #include <stdlib.h>  //malloc()
-#include "list.h"
+#include "list.h"    //a linked list of unichars
 
 int countBytes(char* c);
 void printOut(Node* list);
@@ -41,9 +41,17 @@ int main() {
 //prints a linked Node* list in the format 'char->count'
 void printOut(Node* list) {
 	while(list) {
-		(*list->data == '\n')?
-			printf("\\n->%d\n", list->count) :
-			printf("%s->%d\n", list->data, list->count);
+		switch (*list->data) { 
+			case '\n':
+				printf("\\n");
+				break;
+			case '\t':
+				printf("\\t");
+				break;
+			default:
+				printf("%s", list->data);
+		}
+		printf("->%d\n", list->count);
 		list = list->next;
 	}
 }
@@ -54,7 +62,7 @@ int countBytes(char* c) {
   int byteCount = 0;
   while((*c & 0x80) == 0x80) {  //while the MSB is 1
       byteCount++;
-      *c <<= 1;
+      *c <<= 1; //shift char 1 bit left
   }
   return byteCount? byteCount: 1; //never read 0 bytes
 }

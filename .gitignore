@@ -5,5 +5,4 @@
 *.save
 
 #Specific files to exclude from github
-testing
 project0
