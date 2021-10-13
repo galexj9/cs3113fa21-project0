@@ -11,4 +11,4 @@ How to Use
 Requirements and Limitations
 - This program is designed to run exclusively on valid UTF-8 files.
 - Not all terminals are capable of displaying all valid unicode.  
-- O(n) total chars or O(n^2) where n = # of unique chars whichever is larger.
+- O(nlogn) where n= # of unique chars

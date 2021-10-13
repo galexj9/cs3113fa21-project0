@@ -11,7 +11,7 @@ void printOut(Node* list);
 ** of all chars in descending order to stdout 				*/
 int main() {
   Node* list = NULL;
-  char* c;
+  char* c = (char*) malloc(sizeof(char));
 
   //loop thru stdin for chars
   while (fread(c, sizeof(char), 1, stdin) == sizeof(char)) {
@@ -21,19 +21,25 @@ int main() {
     //count how long the next unicode character is going to be
     int byteCount = countBytes(c);
 
-    //read out the full unicode character
-    Node* node = (Node *) malloc(sizeof(Node));
-    node->data = (char *) malloc(byteCount * sizeof(char));
-    node->dataLen = (int) fread(node->data, sizeof(char), byteCount, stdin);
+		//create a char* array to fit the unicode char and read stdin to it
+		char* unichar = (char*) malloc(sizeof(char) * byteCount);
+  	int len = fread(unichar, sizeof(char), byteCount, stdin);
 
-		//push new chars to the list and inc count
-    if (get(list, node->data, node->dataLen) == NULL)
-      list = push(list, node);
-    get(list, node->data, node->dataLen)->count += 1;
+  	//if the unichar is not found in list then add it
+		Node* uniNode = get(list, unichar, len);
+		if(uniNode == NULL) {
+			Node* node = (Node *) malloc(sizeof(Node));
+			node->data = unichar;
+			node->dataLen = len;
+			node->count = 1;
+			list = push(list, node);
+		} else {
+			uniNode->count += 1;
+		}
   }
 
-  //sort list in descending order by count
-  list = sort(list);
+	//sort list using merge sort
+	sort(&list);
   printOut(list);
   return 0;
 }
@@ -55,7 +61,6 @@ void printOut(Node* list) {
 		list = list->next;
 	}
 }
-
 
 //counts the number of bytes in a single unicode char from the first byte
 int countBytes(char* c) {

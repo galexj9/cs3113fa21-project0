@@ -1,56 +1,69 @@
-#include <stdlib.h>
-#include <string.h>
+#include <string.h> //memcmp()
 #include "list.h"
 
 /* The Nodes construct a singly-linked list.
 ** Node { int count; char* data; int dataLen; Node* next; }; */
 
-//add a new node to the end of a list
+//add a new node to the beginning of a list
 Node* push(Node* head, Node* newNode) {
-  if(head == NULL)
-    return newNode;
-
-  Node* travel = head;
-  while(travel->next)
-    travel = travel->next;
-  travel->next = newNode;
-  return head;
+  newNode->next = head;
+  return newNode;
 }
 
-//swaps the data of two nodes
-void swap(Node* a, Node* b){
-  Node* temp = (Node*)malloc(sizeof(Node));
-	temp->data = a->data;
-	temp->count = a->count;
-	temp->dataLen = a->dataLen;
+//splits a Node* list in two for merge sorting
+void split(Node* head, Node** front, Node** back) {
+	Node* travel = head->next;
+	Node* slow = head;
+	*front = head;
 	
-	a->data = b->data;
-	a->count = b->count;
-	a->dataLen = b->dataLen;
-
-	b->data = temp->data;
-	b->count = temp->count;
-	b->dataLen = temp->dataLen;
-	free(temp);
+	//travel moves twice for every 1 move slow makes
+	//and stops when travel reaches the end so slow is mid-1
+	while(travel != NULL) {
+		travel = travel->next;
+		if (travel != NULL) {
+			travel = travel->next;
+			slow = slow->next;
+		}
+	}
+	//assign back to the mid element in the list and NULL terminate the front half
+	*back = slow->next;
+	slow->next = NULL;
 }
 
-//returns a new list sorted in descending order by count using max sort
-Node* sort(Node* list) {
-  Node* front = list;
-  Node* travel, *max;
+//recursively move the largest first element of 2 lists to a new one
+Node* merge(Node* front, Node* back) {
+	if(front == NULL)
+			return back; 
+	else if (back == NULL)
+			return front;
 
-  while(front->next) {
-    max = front;
-    travel = front->next;
-    while(travel) {
-      if(travel->count > max->count)
-        max = travel;
-      travel = travel->next;
-    }
-    swap(front, max); //move the max el to the end of the sorted section
-    front = front->next; //move down from the sorted section
-  }
-	return list;
+	Node* merged;
+	//elements with the same count are added in order of first appearance
+	//since new elements are added to the front, favor the one in back
+	if(front->count > back->count) {
+		merged = front;
+		merged->next = merge(front->next, back);
+	} else {
+		merged = back;
+		merged->next = merge(front, back->next);
+	}
+	return merged;
+}
+
+//recusrively splits and sorts a Node* list using merge sort
+//uses double pointers so that the list pointer can be overwritten
+void sort(Node** list) {
+	Node*	head = *list;
+	Node* front, *back;
+
+	if (head == NULL || head->next == NULL)
+		return;
+
+	split(head, &front, &back);
+	sort(&front);
+	sort(&back);
+	//recursively merge the list
+	*list = merge(front, back);
 }
 
 //return the Node pointer with given data

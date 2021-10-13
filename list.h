@@ -15,7 +15,6 @@ extern Node* push(Node* head, Node* newNode);
 //return a pointer to the first node in the list with given data
 extern Node* get(Node* head, char* data, int dataLen);
 
-//sorts the list in descending order using max insertion sort
-extern Node* sort(Node* head);
-
+//sorts the list in descending order using mergesort
+extern void sort(Node** list);
 #endif
